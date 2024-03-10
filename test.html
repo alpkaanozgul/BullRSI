@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stock RSI</title>
+</head>
+<body>
+
+<h1>Relative Strength Index (RSI) for the Last 14 Days</h1>
+<div id="rsiData"></div>
+
+<script>
+  const apiKey = 'pk_d088391d2b1c41158aef9b211382753c'; // Replace this with your actual IEX Cloud API token
+  const symbol = 'AAPL'; // Change this to the symbol of the stock you want to fetch
+  const days = 14; // Number of days to fetch
+
+  const apiUrl = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/1m?token=${apiKey}`;
+
+  fetch(apiUrl)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json();
+    })
+    .then(data => {
+      if (!data || data.length === 0) {
+        throw new Error('Invalid data format or missing time series data');
+      }
+
+      const closePrices = data.map(entry => entry.close);
+
+      // Calculate RSI
+      const rsiValues = calculateRSI(closePrices, days);
+
+      const rsiDataElement = document.getElementById('rsiData');
+      rsiDataElement.innerHTML = `
+        <table border="1">
+          <tr>
+            <th>Date</th>
+            <th>RSI</th>
+          </tr>
+          ${rsiValues.map((rsi, index) => `
+            <tr>
+              <td>${data[index].date}</td>
+              <td>${rsi.toFixed(2)}</td>
+            </tr>
+          `).join('')}
+        </table>
+      `;
+    })
+    .catch(error => {
+      console.error('Error fetching stock data:', error);
+    });
+
+  // Function to calculate RSI
+  function calculateRSI(prices, period) {
+    let gains = [];
+    let losses = [];
+
+    for (let i = 1; i < prices.length; i++) {
+      const change = prices[i] - prices[i - 1];
+      if (change > 0) {
+        gains.push(change);
+        losses.push(0);
+      } else {
+        gains.push(0);
+        losses.push(Math.abs(change));
+      }
+    }
+
+    let avgGain = 0;
+    let avgLoss = 0;
+
+    for (let i = 0; i < period; i++) {
+      avgGain += gains[i];
+      avgLoss += losses[i];
+    }
+
+    avgGain /= period;
+    avgLoss /= period;
+
+    let rs = avgGain / avgLoss;
+    let rsi = 100 - (100 / (1 + rs));
+
+    let rsiValues = [rsi];
+
+    for (let i = period; i < prices.length; i++) {
+      const gain = gains[i];
+      const loss = losses[i];
+      avgGain = ((avgGain * (period - 1)) + gain) / period;
+      avgLoss = ((avgLoss * (period - 1)) + loss) / period;
+      rs = avgGain / avgLoss;
+      rsi = 100 - (100 / (1 + rs));
+      rsiValues.push(rsi);
+    }
+
+    return rsiValues;
+  }
+</script>
+
+</body>
+</html>

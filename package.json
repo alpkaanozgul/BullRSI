@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "mysql": "^2.18.1",
+    "puppeteer": "^22.4.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "para",
+  "version": "1.0.0",
+  "main": "scraper1.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

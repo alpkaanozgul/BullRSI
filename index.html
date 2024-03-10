@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Webleb</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/styles.css">
+  
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Webleb</title>
+
+</head>
+<style>
+body {
+  background-color: black;
+}  
+
+#form {
+  display: grid;
+  place-items: center;
+  width: 100vw; 
+  height: 100vh; 
+  padding: 25px;
+  background-color: #161616;
+  box-shadow: 0px 5px 50pt #4a93dc; 
+  outline: 1px solid #2b9962;
+  border-radius: 100px; 
+}
+
+#form-body {
+  width: 230px;
+  height: 230px; 
+}
+
+
+
+#welcome-lines {
+  text-align: center;
+  line-height: 1;
+}
+
+#welcome-line-1 {
+  color: #4a93dc;
+  font-weight: 600;
+  font-size: 40px;
+}
+
+#welcome-line-2 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-top: 17px;
+}
+
+#input-area {
+  margin-top: 40px;
+}
+
+.form-inp {
+  padding: 11px 25px;
+  background: transparent;
+  border: 1px solid #e3e3e3;
+  line-height: 1;
+  border-radius: 8px;
+}
+
+.form-inp:focus {
+  border: 1px solid #4a93dc;
+}
+
+.form-inp:first-child {
+  margin-bottom: 15px;
+}
+
+.form-inp input {
+  width: 100%;
+  background: none;
+  font-size: 13.4px;
+  color: #4a93dc;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form-inp input:focus {
+  outline: none;
+}
+
+#submit-button-cvr {
+  margin-top: 20px;
+}
+
+#submit-button {
+  display: block;
+  width: 100%;
+  color: #4a93dc;
+  background-color: transparent;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+  padding: 14px 13px 12px 13px;
+  border: 0;
+  outline: 1px solid #4a93dc;
+  border-radius: 8px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all ease-in-out .3s;
+}
+
+#submit-button:hover {
+  transition: all ease-in-out .3s;
+  background-color: #4a93dc;
+  color: #161616;
+  cursor: pointer;
+}
+
+#forgot-pass {
+  text-align: center;
+  margin-top: 10px;
+}
+
+#forgot-pass a {
+  color: #868686;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+#bar {
+  position: absolute;
+  left: 50%;
+  bottom: -50px;
+  width: 28px;
+  height: 8px;
+  margin-left: -33px;
+  background-color: #4a93dc;
+  border-radius: 10px;
+}
+
+#bar:before,
+#bar:after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background-color: #ececec;
+  border-radius: 50%;
+}
+
+#bar:before {
+  right: -20px;
+}
+
+#bar:after {
+  right: -38px;
+}
+
+.bar {
+  background-color: #22303e; 
+  color: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.bar:hover {
+  background-color: #0056b3; 
+}
+
+
+
+
+
+</style>
+<body>
+  
+  <div id="form-ui">
+    <form action="" method="post" id="form">
+        <div id="form-body">
+            <div id="welcome-lines">
+
+                <div id="welcome-line-1">Bull RSI</div>
+                <div id="welcome-line-2">Created by Alp Kaan Özgül</div>
+            </div>
+            <div id="input-area">
+                <div class="form-inp">
+                    <input placeholder="Email Address" id="mail" type="text">
+                </div>
+                <div class="form-inp">
+                    <input placeholder="Password" id="password" type="text">
+                </div>
+                <div class="form-inp">
+                    <input placeholder="Name" id="name" type="text">
+                </div>
+                <div class="form-inp">
+                    <input placeholder="Phone Number" id="phone_number" type="text">
+                </div>
+            </div>
+            <div id="submit-button-cvr">
+                <button onclick="register()" id="submit-button" type="button">Register</button>
+            </div>
+            <div id="forgot-pass">
+                <button onclick="loginopen()" id="submit-button" type="button">Login</button>
+            </div>
+            <div id="bar"></div>
+        </div>
+    </form>
+</div>
+
+<div id="login-form" style="display: none;">
+  <form action="" method="post" id="form">
+    <div id="form-body">
+        <div id="welcome-lines">
+            <div id="welcome-line-1">Bull RSI</div>
+            <div id="welcome-line-2">Created by Alp Kaan Özgül</div>
+        </div>
+        <div id="input-area">
+            <div class="form-inp">
+                <input placeholder="Email Address" id="mail1" type="text">
+            </div>
+            <div class="form-inp">
+                <input placeholder="Password" id="password1" type="text">
+            </div>
+            
+        </div>
+        <div id="submit-button-cvr">
+            <button onclick="login()" id="submit-button" type="button">login</button>
+        </div>
+        
+        <div id="bar"></div>
+    </div>
+</form>
+</div>
+
+
+<script>
+
+function loginopen() {
+    var loginForm = document.getElementById("login-form");
+    if (loginForm.style.display === "none") {
+        loginForm.style.display = "block";
+        document.getElementById("form-ui").style.display = "none"; 
+    } else {
+        loginForm.style.display = "none";
+    }
+    
+}
+function login() {
+    var email = document.getElementById("mail1").value;
+    var password = document.getElementById("password1").value;
+
+    var formData = new FormData();
+    formData.append("email1", email);
+    formData.append("password1", password);
+
+    fetch("login_api.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(response => response.text())
+    .then(result => {
+        if (result.trim() === "Login successful.") {
+            createNewDiv();
+        } else {
+            login_invalid();
+            console.log(result);
+        }
+    })
+    .catch(error => console.error('Error sending data:', error));
+}
+
+function createNewDiv() {
+  var newDiv = document.createElement("div");
+  newDiv.style.backgroundColor = "black"; 
+  newDiv.style.position = "fixed";
+  newDiv.style.top = "0";
+  newDiv.style.left = "0";
+  newDiv.style.width = "100%";
+  newDiv.style.height = "100%";
+  newDiv.style.zIndex = "9999";
+  newDiv.style.padding = "10px"; 
+  newDiv.style.overflowY = "auto"; 
+ 
+  var content = document.createTextNode("BIST100, NASDAQ, Dow Jones, S&P, BTC");
+
+
+  var items = ["BIST100", "NASDAQ", "Dow Jones", "S&P", "BTC"];
+  for (var i = 0; i < items.length; i++) {
+    var itemDiv = document.createElement("div");
+    itemDiv.textContent = items[i];
+    itemDiv.className = "bar"; 
+   
+    if (items[i] === "BIST100") {
+      itemDiv.addEventListener("click", function() {
+        var bars = document.querySelectorAll('.bar');
+        bars.forEach(function(bar) {
+          bar.style.display = 'none';
+        });
+
+        var searchInput = document.createElement("input");
+        searchInput.type = "text";
+        searchInput.name = "text";
+        searchInput.classList.add("input");
+        searchInput.placeholder = "Type something here....";
+
+        searchInput.style.display = 'none';
+
+
+        newDiv.appendChild(searchInput);
+
+        var searchButton = document.createElement("button");
+        searchButton.textContent = "Sort";
+        searchButton.style.marginTop = "10px";
+        searchButton.addEventListener("click", function() {
+          var searchText = searchInput.value.trim(); 
+          if (searchText === "") {
+            openNewDiv();
+          }
+        });
+        newDiv.appendChild(searchButton);
+
+
+        var backButton = document.createElement("button");
+        backButton.textContent = "Back";
+        backButton.style.position = "fixed";
+        backButton.style.top = "10px";
+        backButton.style.right = "10px";
+        backButton.addEventListener("click", function() {
+          newDiv.remove();
+          createNewDiv(); 
+        });
+        newDiv.appendChild(backButton);
+       
+        
+        fetch('bist100_fetch.php')
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+            data.forEach(item => {
+              var bar = document.createElement("div");
+              bar.classList.add("bar", "dynamic-bar"); 
+              bar.addEventListener("click", function() {
+               
+                alert("You clicked: " + item.name);
+              });
+
+
+              var text = document.createTextNode(item.name);
+
+
+              var icon = document.createElement("i");
+              icon.classList.add("uil", "uil-angle-right"); 
+              icon.style.marginLeft = "200pt"; 
+              icon.style.marginRight = "auto"; 
+
+
+              bar.appendChild(text);
+              bar.appendChild(icon);
+
+
+              fetch('bist100rsi_fetch.php?id=' + item.id)
+                .then(response => response.json())
+                .then(rsiData => {
+                  console.log(rsiData);
+                  var rsiDiv = document.createElement("div");
+                  rsiDiv.textContent = "RSI: " + rsiData.rsi14;
+                  bar.appendChild(rsiDiv);
+
+
+                  var dibeDiv = document.createElement("div");
+                  dibeDiv.textContent = "Dibe Uzaklik: " + rsiData.dibe_uzaklik;
+                  bar.appendChild(dibeDiv);
+
+
+                  var netKarDiv = document.createElement("div");
+                  netKarDiv.textContent = "Net Kar: " + rsiData.net_kar;
+                  bar.appendChild(netKarDiv);
+                })
+                .catch(error => {
+                  console.error('Error fetching data from bist100rsi_fetch.php:', error);
+                });
+
+
+              newDiv.appendChild(bar);
+            });
+          })
+          .catch(error => {
+            console.error('Error fetching data from bist100_fetch.php:', error);
+          });
+      });
+    }
+   
+    newDiv.appendChild(itemDiv);
+  }
+
+
+  document.body.appendChild(newDiv);
+}
+
+function openNewDiv() {
+  var newDiv = document.createElement("div");
+  newDiv.style.backgroundColor = "black";
+  newDiv.style.position = "fixed";
+  newDiv.style.top = "0";
+  newDiv.style.left = "0";
+  newDiv.style.width = "100%";
+  newDiv.style.height = "100%";
+  newDiv.style.zIndex = "9999";
+  newDiv.style.padding = "10px"; 
+  newDiv.style.overflowY = "auto";
+
+  document.body.appendChild(newDiv);
+
+  var createdDiv = newDiv;
+
+  function Node(data) {
+    this.data = data;
+    this.next = null;
+  }
+
+  var head = null;
+
+  function addToLinkedList(data) {
+    var newNode = new Node(data);
+    if (head === null) {
+      head = newNode;
+    } else {
+      var current = head;
+      while (current.next !== null) {
+        current = current.next;
+      }
+      current.next = newNode;
+    }
+  }
+
+  function sortLinkedList() {
+    if (head === null || head.next === null) {
+      return;
+    }
+
+    var sorted = null;
+    var current = head;
+    while (current !== null) {
+      var nextNode = current.next;
+      sorted = insertIntoSorted(sorted, current.data);
+      current = nextNode;
+    }
+    head = sorted;
+  }
+
+  function insertIntoSorted(sorted, data) {
+    var newNode = new Node(data);
+    if (sorted === null || sorted.data.rsi14 >= data.rsi14) {
+      newNode.next = sorted;
+      return newNode;
+    } else {
+      var current = sorted;
+      while (current.next !== null && current.next.data.rsi14 < data.rsi14) {
+        current = current.next;
+      }
+      newNode.next = current.next;
+      current.next = newNode;
+      return sorted;
+    }
+  }
+
+  function displayLinkedList() {
+    var current = head;
+    var dataList = document.createElement("ul");
+    while (current !== null) {
+      var listItem = document.createElement("li");
+      listItem.textContent = "rsi14: " + current.data.rsi14 + ", stock_symbol: " + current.data.stock_symbol;
+
+      if (parseFloat(current.data.rsi14) <= 35) {
+        listItem.style.color = "green";
+      } else if (parseFloat(current.data.rsi14) >= 70) {
+        listItem.style.color = "red";
+      }
+      else{
+        listItem.style.color = "white";
+
+      }
+
+      dataList.appendChild(listItem);
+      current = current.next;
+    }
+    createdDiv.appendChild(dataList); 
+
+    var backButton = document.createElement("button");
+    backButton.textContent = "Back";
+    backButton.style.position = "fixed";
+    backButton.style.top = "10px";
+    backButton.style.right = "10px";
+    backButton.addEventListener("click", function() {
+      createdDiv.remove(); 
+    });
+    createdDiv.appendChild(backButton);
+  }
+
+  function fetchData(id) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "bist100rsi_fetch.php?id=" + id, true);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var data = JSON.parse(xhr.responseText);
+        addToLinkedList({
+          rsi14: data.rsi14,
+          stock_symbol: data.stock_symbol
+        });
+        if (id === 100) {
+          sortLinkedList();
+          displayLinkedList();
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  for (var id = 1; id <= 100; id++) {
+    fetchData(id);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function login_invalid() {
+    var newDiv = document.createElement("div");
+    newDiv.textContent = "New empty div created.";
+    newDiv.style.width = "200px"; 
+    newDiv.style.height = "200px"; 
+    newDiv.style.backgroundColor = "lightblue"; 
+    newDiv.style.position = "fixed"; 
+    newDiv.style.top = "50%"; 
+    newDiv.style.left = "50%"; 
+    newDiv.style.transform = "translate(-50%, -50%)"; 
+    newDiv.style.zIndex = "9999"; 
+    newDiv.style.padding = "20px";
+    newDiv.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.5)"; 
+    newDiv.style.borderRadius = "10px"; 
+
+    document.body.appendChild(newDiv);
+}
+
+function register() {
+        var name = document.getElementById("name").value;
+        var phone_number = document.getElementById("phone_number").value;
+        var email = document.getElementById("mail").value; 
+        var password = document.getElementById("password").value;
+
+        var formData = new FormData();
+        formData.append("name", name);
+        formData.append("phone_number", phone_number);
+        formData.append("email", email);
+        formData.append("password", password);
+
+        fetch("register_api.php", {
+                method: "POST",
+                body: formData
+            })
+            .then(response => response.text())
+            .then(result => {
+                console.log(result);
+            })
+            .catch(error => console.error('Error sending data:', error));
+            document.getElementById("form-ui").style.display = "none";
+
+    document.getElementById("login-form").style.display = "block";
+    }
+function updateChart(price) {
+    bitcoinChart.data.labels.push(new Date());
+    bitcoinChart.data.datasets[0].data.push(price);
+    bitcoinChart.update();
+}
+</script>
+</body>
+</html>
